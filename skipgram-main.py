@@ -240,6 +240,7 @@ def train(args):
     N = sample_size
     # Setup optimizer
     optimizer = optimizers.Adam()
+    optimzier.setup(model)
     #optimizer.add_hook(chainer.optimizer.GradientClipping(grad_clip))
 
 
