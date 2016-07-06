@@ -232,7 +232,7 @@ def train(args):
     # GPUを使うかどうか
     if args.use_gpu:
         cuda.check_cuda_available()
-        cuda.get_device(1).use()
+        cuda.get_device(0).use()
         model.to_gpu()
     xp = cuda.cupy if args.use_gpu else np #args.gpu <= 0: use cpu, otherwise: use gpu
 
