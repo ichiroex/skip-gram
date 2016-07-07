@@ -241,7 +241,7 @@ def train(args):
     # Setup optimizer
     optimizer = optimizers.Adam()
     optimizer.setup(model)
-    #optimizer.add_hook(chainer.optimizer.GradientClipping(grad_clip))
+    optimizer.add_hook(chainer.optimizer.GradientClipping(grad_clip))
 
 
     # 学習の始まり
