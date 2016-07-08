@@ -189,6 +189,17 @@ def forward_one_step(model,
                 break
         return hyp_batch # 予測結果を返す
 
+def get_optimizer(optimizer_name):
+
+    optimizer = None
+    if optimizer_name == "adam":
+        optimizer = optimizers.Adam()
+    elif optimizer_name == "adagrad":
+        optimizer = optimizers.AdaGrad()
+    elif optimizer_name == "sgd":
+        optimizer = optimizers.SGD()
+
+    return optimizer
 
 def train(args):
     """ 学習を行うメソッド
@@ -200,7 +211,7 @@ def train(args):
     batchsize   = args.batchsize  # バッチサイズ
     n_epoch     = args.epoch      # エポック数(パラメータ更新回数)
     grad_clip   = args.grad_clip  # gradiation clip
-
+    optimizer_name = args.optimizer # Optimizer Name
 
     # 学習データの読み込み
     # Source
@@ -218,7 +229,7 @@ def train(args):
         print 'mini batch size:', batchsize
         print 'epoch:', n_epoch
         print 'grad clip threshold:', grad_clip
-        print
+        print 'Optimizer:', optimizer_name
         print 'sample size:', sample_size
         print
 
@@ -235,10 +246,8 @@ def train(args):
 
     N = sample_size
     # Setup optimizer
-    optimizer = optimizers.Adam()
+    optimizer = get_optimizer(optimizer_name)
     optimizer.setup(model)
-    #optimizer.add_hook(chainer.optimizer.GradientClipping(grad_clip))
-
 
     # 学習の始まり
     for epoch in range(n_epoch):
