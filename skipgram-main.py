@@ -118,7 +118,11 @@ def argument_parser():
                         type=int,
                         default=def_grad_clip,
                         help='threshold of gradiation clipping')
-
+    parser.add_argument('--optimizer',
+                        dest='optimizer',
+                        default='adam',
+                        choices=['adam', 'adagrad', 'sgd'],
+                        help='optimizers that you want to use for learning your model')
     parser.add_argument('--word',
                         dest='src_word'  ,
                         type=str,
