@@ -52,7 +52,6 @@ def argument_parser():
     # Model parameter
     def_vocab = 5000
     def_embed = 100
-    def_hidden = 100
 
     # Other parameter
     def_epoch = 10
@@ -103,11 +102,6 @@ def argument_parser():
                         type=int,
                         default=def_embed,
                         help='embedding layer size')
-    parser.add_argument('--hidden',
-                        dest='hidden',
-                        type=int,
-                        default=def_hidden,
-                        help='hidden layer size')
 
     parser.add_argument('--epoch',
                         dest='epoch',
@@ -129,7 +123,7 @@ def argument_parser():
                         dest='src_word'  ,
                         type=str,
                         default=def_src_word,
-                        help='a word that you want to similar words')
+                        help='a word that you want to see similar words')
 
     return parser.parse_args()
 
