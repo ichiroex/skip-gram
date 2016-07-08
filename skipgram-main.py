@@ -51,7 +51,7 @@ def argument_parser():
 
     # Model parameter
     def_vocab = 5000
-    def_embed = 100
+    def_embed = 200
 
     # Other parameter
     def_epoch = 10
@@ -113,11 +113,6 @@ def argument_parser():
                         type=int,
                         default=def_batchsize,
                         help='learning minibatch size')
-    parser.add_argument('--gclip',
-                        dest='grad_clip'  ,
-                        type=int,
-                        default=def_grad_clip,
-                        help='threshold of gradiation clipping')
     parser.add_argument('--optimizer',
                         dest='optimizer',
                         default='adam',
@@ -221,17 +216,15 @@ def train(args):
     sample_size = len(src_dataset)
 
     # debug modeの時, パラメータの確認
-    if args.is_debug_mode:
-        print "[PARAMETERS]"
-        print 'vocab size:', vocab_size
-        print 'embed size:', embed_size
+    print "[PARAMETERS]"
+    print 'vocab size:', vocab_size
+    print 'embed size:', embed_size
 
-        print 'mini batch size:', batchsize
-        print 'epoch:', n_epoch
-        print 'grad clip threshold:', grad_clip
-        print 'Optimizer:', optimizer_name
-        print 'sample size:', sample_size
-        print
+    print 'mini batch size:', batchsize
+    print 'epoch:', n_epoch
+    print 'Optimizer:', optimizer_name
+    print 'sample size:', sample_size
+    print
 
     # モデルの定義
     model = SkipGram(vocab_size, embed_size)
