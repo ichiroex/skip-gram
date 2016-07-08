@@ -47,7 +47,7 @@ def argument_parser():
     def_is_debug_mode = False
     def_src = ""
     def_context_window = 4
-    def_model = "cbow"
+    def_model = "skipgram"
 
     # Model parameter
     def_vocab = 5000
@@ -295,12 +295,13 @@ def train(args):
         print('train mean loss={}'.format(sum_train_loss / N)) #平均誤差
         print('training perplexity={}'.format(math.exp(float(cur_log_perp) / N))) #perplexity
 
-        #モデルの途中経過を保存
-        print 'saving model....'
-        prefix = './model/' + args.model + '.%03.d' % (epoch + 1)
-        util.save_vocab(prefix + '.srcvocab', src_id2vocab)
-        model.save_spec(prefix + '.spec')
-        serializers.save_hdf5(prefix + '.weights', model)
+        #epoch 10毎にモデルを保存
+        if epoch % 10 == 0:
+            print 'saving model....'
+            prefix = './model/' + args.model + '.%03.d' % (epoch + 1)
+            util.save_vocab(prefix + '.srcvocab', src_id2vocab)
+            model.save_spec(prefix + '.spec')
+            serializers.save_hdf5(prefix + '.weights', model)
 
         sys.stdout.flush()
 
