@@ -205,7 +205,6 @@ def train(args):
     embed_size  = args.embed      # embeddingの次元数
     batchsize   = args.batchsize  # バッチサイズ
     n_epoch     = args.epoch      # エポック数(パラメータ更新回数)
-    grad_clip   = args.grad_clip  # gradiation clip
     optimizer_name = args.optimizer # Optimizer Name
 
     # 学習データの読み込み
