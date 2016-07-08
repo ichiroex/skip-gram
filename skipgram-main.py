@@ -293,7 +293,7 @@ def train(args):
         print('training perplexity={}'.format(math.exp(float(cur_log_perp) / N))) #perplexity
 
         #epoch 10毎にモデルを保存
-        if epoch % 10 == 0:
+        if (epoch+1) % 10 == 0:
             print 'saving model....'
             prefix = './model/' + args.model + '.%03.d' % (epoch + 1)
             util.save_vocab(prefix + '.srcvocab', src_id2vocab)
