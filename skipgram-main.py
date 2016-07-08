@@ -193,7 +193,6 @@ def train(args):
     # オプションの値をメソッド内の変数に渡す
     vocab_size  = args.vocab      # 語彙数
     embed_size  = args.embed      # embeddingの次元数
-    hidden_size = args.hidden     # 隠れ層のユニット数
     batchsize   = args.batchsize  # バッチサイズ
     n_epoch     = args.epoch      # エポック数(パラメータ更新回数)
     grad_clip   = args.grad_clip  # gradiation clip
@@ -211,7 +210,6 @@ def train(args):
         print "[PARAMETERS]"
         print 'vocab size:', vocab_size
         print 'embed size:', embed_size
-        print 'hidden size:', hidden_size
 
         print 'mini batch size:', batchsize
         print 'epoch:', n_epoch
