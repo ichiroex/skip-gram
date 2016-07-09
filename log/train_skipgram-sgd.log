@@ -1,0 +1,45 @@
+loading training data...
+txt/bb.train.txt
+dataset size 28000
+symbol vocab size: 3552
+symbol vocab size(actual): 3549
+
+[PARAMETERS]
+vocab size: 5000
+embed size: 200
+mini batch size: 40
+epoch: 10
+Optimizer: sgd
+sample size: 28000
+
+epoch: 0 / 10
+train mean loss=399.347266628
+training perplexity=21669.9473672
+epoch: 1 / 10
+train mean loss=338.322084263
+training perplexity=4712.86888457
+epoch: 2 / 10
+train mean loss=328.587365679
+training perplexity=3694.80900519
+epoch: 3 / 10
+train mean loss=323.640024915
+training perplexity=3264.95292288
+epoch: 4 / 10
+train mean loss=320.511024846
+training perplexity=3019.28588698
+epoch: 5 / 10
+train mean loss=318.291272779
+training perplexity=2856.29845623
+epoch: 6 / 10
+train mean loss=316.597316655
+training perplexity=2737.86285844
+epoch: 7 / 10
+train mean loss=315.398632834
+training perplexity=2657.03420935
+epoch: 8 / 10
+train mean loss=314.236677486
+training perplexity=2580.9606076
+epoch: 9 / 10
+train mean loss=313.366344844
+training perplexity=2525.40978873
+saving model....

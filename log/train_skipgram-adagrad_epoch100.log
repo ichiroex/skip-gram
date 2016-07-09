@@ -1,0 +1,15 @@
+loading training data...
+txt/bb.train.txt
+dataset size 28000
+symbol vocab size: 3552
+symbol vocab size(actual): 3549
+
+[PARAMETERS]
+vocab size: 5000
+embed size: 200
+mini batch size: 40
+epoch: 100
+Optimizer: adagrad
+sample size: 28000
+
+epoch: 0 / 100
