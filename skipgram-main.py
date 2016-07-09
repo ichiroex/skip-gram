@@ -43,7 +43,7 @@ def argument_parser():
     # デフォルト値の設定
     def_train = False
     def_test = False
-    def_gpu = False
+    def_gpu_id = -1
     def_is_debug_mode = False
     def_src = ""
     def_context_window = 4
@@ -82,11 +82,11 @@ def argument_parser():
                         action="store_true",
                         default=def_is_debug_mode,
                         help="if set, run train with debug mode")
-    parser.add_argument('--use-gpu  ',
-                        dest='use_gpu',
-                        action="store_true",
-                        default=def_gpu,
-                        help='use gpu')
+    parser.add_argument('--gpu-id  ',
+                        dest='gpu_id',
+                        default=def_gpu_id,
+                        type=int,
+                        help='gpu id')
     parser.add_argument('--model ',
                         dest='model',
                         type=str,
@@ -229,12 +229,11 @@ def train(args):
     model = SkipGram(vocab_size, embed_size)
 
     # GPUを使うかどうか
-    if args.use_gpu:
+    if args.gpu_id != -1:
         cuda.check_cuda_available()
-        cuda.get_device(0).use()
+        cuda.get_device(args.gpu_id).use()
         model.to_gpu()
-    xp = cuda.cupy if args.use_gpu else np #args.gpu <= 0: use cpu, otherwise: use gpu
-
+    xp = cuda.cupy if args.gpu_id != -1 else np #args.gpu <= 0: use cpu, otherwise: use gpu
 
     N = sample_size
     # Setup optimizer
@@ -315,12 +314,12 @@ def test(args):
     model = SkipGram.load_spec(args.model + ".spec")
 
     # GPUを使うかどうか
-    if args.use_gpu:
+    if args.gpu_id != -1:
         cuda.check_cuda_available()
-        cuda.get_device(1).use()
+        cuda.get_device(args.gpu_id).use()
         model.to_gpu()
+    xp = cuda.cupy if args.gpu_id != -1 else np #args.gpu <= 0: use cpu, otherwise: use gpu
 
-    xp = cuda.cupy if args.use_gpu else np # args.gpu <= 0: use cpu, otherwise: use gpu
     serializers.load_hdf5(args.model + ".weights", model)
 
     # Source sequence for test
